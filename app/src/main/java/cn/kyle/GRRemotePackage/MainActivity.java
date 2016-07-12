@@ -1,6 +1,5 @@
-package com.example.kyle.webviewtest;
+package cn.kyle.GRRemotePackage;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,12 +7,8 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
@@ -25,8 +20,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import java.util.LinkedList;
-import java.util.List;
+import cn.kyle.GRRemotePackage.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -120,6 +114,10 @@ public class MainActivity extends AppCompatActivity {
         webView.loadUrl("http://www.ricoh-imaging.co.jp/english/products/gr_remote/app/latest-appcache/index.html");
 //        webView.loadUrl("http://www.ricoh-imaging.co.jp/english/products/gr_remote/app/latest/index.html");
 
+
+//        String summary = "<html><body>You scored <b>192</b> points.</body></html>";
+//        webView.loadData(summary, "text/html", null);
+//        webView.loadDataWithBaseURL("http://www.ricoh-imaging.co.jp/english/products/gr_remote/app/latest-appcache/index.html",summary, "text/html", null, null);
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
