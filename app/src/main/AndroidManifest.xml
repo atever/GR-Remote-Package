@@ -24,6 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ListFruitActivity"></activity>
+        <activity android:name=".ListViewItemActivity"></activity>
+        <activity android:name=".WifiListActivity"></activity>
+
 
 
     </application>

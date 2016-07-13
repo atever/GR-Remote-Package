@@ -3,6 +3,7 @@ package cn.kyle.GRRemotePackage;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.Toast;
 
 import cn.kyle.GRRemotePackage.R;
@@ -40,6 +42,18 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "请打开wifi", Toast.LENGTH_SHORT).show();
             wm.setWifiEnabled(true);
         }
+
+
+        Button test = (Button) findViewById(R.id.btn);
+        test.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Do something in response to button click
+//                Intent intent = new Intent(MainActivity.this, ListFruitActivity.class);
+                Intent intent = new Intent(MainActivity.this, WifiListActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         webView = (WebView) findViewById(R.id.web_view);
 
