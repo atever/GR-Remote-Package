@@ -27,6 +27,9 @@
         <activity android:name=".ListFruitActivity"></activity>
         <activity android:name=".ListViewItemActivity"></activity>
         <activity android:name=".WifiListActivity"></activity>
+        <activity android:name=".BottomSheetBasicActivity"></activity>
+
+        <activity android:name=".MainActivity2"></activity>
 
 
 

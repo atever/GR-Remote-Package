@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/setting"
+        android:icon="@mipmap/ic_launcher"
+        android:title="设置要自动连接的WIFI热点" />
+    <item
+        android:id="@+id/upload"
+        android:icon="@mipmap/ic_launcher"
+        android:title="upload" />
+    <item
+        android:id="@+id/call"
+        android:icon="@mipmap/ic_launcher"
+        android:title="call" />
+    <group android:id="@+id/helpgroup">
+        <item
+            android:id="@+id/about"
+            android:icon="@mipmap/ic_launcher"
+            android:title="关于" />
+    </group>
+</menu>

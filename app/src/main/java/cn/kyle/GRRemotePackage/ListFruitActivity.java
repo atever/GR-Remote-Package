@@ -50,7 +50,7 @@ public class ListFruitActivity extends ListActivity {
 //            list2.addAll(existingConfigs.get(i));
         list3.addAll(existingConfigs);
 
-        Map map =(Map)list3.get(i);
+//        Map map =(Map)list3.get(i);
 
 //        Log.e("TEXT", map.toString());
 //            list2.add(existingConfigs.get(i));
