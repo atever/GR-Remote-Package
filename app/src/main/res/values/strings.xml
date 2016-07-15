@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">GR Remote</string>
     <string name="action_settings">设置</string>
+
+
+
+
+    <string name="about">关于</string>
+
+    // menu
+    <string name="wifi_manage">WIFI热点绑定</string>
+
 </resources>

@@ -47,17 +47,13 @@ public class MainActivity extends AppCompatActivity{
     final String TAG = "MainActivity";
 
 
-    public static List<String> mList;
-    public Button showBottomSheet;
-    public BottomSheetBehavior bottomSheetBehavior;
-    public RecyclerView recyclerView;
-    public MyAdapter adapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 //        initData();
@@ -77,8 +73,6 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 // Do something in response to button click
 //                Intent intent = new Intent(MainActivity.this, ListFruitActivity.class);
-//                Intent intent = new Intent(MainActivity.this, BottomSheetBasicActivity.class);
-                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
 
                 startActivity(intent);
             }
@@ -91,14 +85,6 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
-    public void initData()
-    {
-        mList = new ArrayList<>();
-        for(int i = 0; i < 5; i++)
-        {
-            mList.add(String.format("index %s position", i));
-        }
-    }
 
 
 
@@ -124,123 +110,6 @@ public class MainActivity extends AppCompatActivity{
             wm.setWifiEnabled(true);
         }
     }
-
-
-
-    /**
-     * init view
-     */
-    private void initView()
-    {
-//        showBottomSheet = (Button) findViewById(R.id.showBottomSheet);
-//        showBottomSheet.setOnClickListener(this);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-        adapter = new MyAdapter(this);
-        adapter.setItemClickListener(new MyAdapter.ItemClickListener()
-        {
-            @Override
-            public void onItemClick(int position)
-            {
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                Toast.makeText(MainActivity.this, String.format("you click %s item",position), Toast.LENGTH_LONG).show();
-            }
-        });
-        recyclerView.setAdapter(adapter);
-        bottomSheetBehavior = BottomSheetBehavior.from(recyclerView);
-        recyclerView.setVisibility(View.GONE);
-        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback()
-        {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState)
-            {
-                if(newState == BottomSheetBehavior.STATE_COLLAPSED || newState == BottomSheetBehavior.STATE_HIDDEN)
-                {
-                    recyclerView.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset)
-            {
-                recyclerView.setVisibility(View.VISIBLE);
-                ViewCompat.setAlpha(recyclerView, slideOffset);
-            }
-        });
-
-
-    }
-
-    /**
-     * custom adapter
-     */
-    public static class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
-    {
-
-        public ItemClickListener mItemClickListener;
-
-        public void setItemClickListener(ItemClickListener listener)
-        {
-            mItemClickListener = listener;
-        }
-
-        public interface ItemClickListener
-        {
-            void onItemClick(int position);
-        }
-
-        private Context mContext;
-
-        public static class ViewHolder extends RecyclerView.ViewHolder
-        {
-
-            public final TextView mTextView;
-
-            public ViewHolder(View view)
-            {
-                super(view);
-                mTextView = (TextView) view.findViewById(R.id.textview);
-            }
-        }
-
-        public MyAdapter(Context context)
-        {
-            super();
-            mContext = context;
-        }
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-        {
-            ViewHolder holder = new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false));
-            return holder;
-        }
-
-        @Override
-        public void onBindViewHolder(final ViewHolder holder, final int position)
-        {
-            holder.mTextView.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    mItemClickListener.onItemClick(position);
-                }
-            });
-
-            holder.mTextView.setText(mList.get(position));
-        }
-
-        @Override
-        public int getItemCount()
-        {
-            return mList.size();
-        }
-    }
-
-
-
-
 
 
 
@@ -287,11 +156,7 @@ public class MainActivity extends AppCompatActivity{
 ////                drawer.closeDrawer(GravityCompat.START);
 //            ada.makeText("gaga");}
 
-        else if (bottomSheetBehavior != null) {
-            if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN) {
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-            }
-        }
+
         else if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (!mIsExit) {
                 mIsExit = true;
@@ -449,6 +314,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
 
+
                 Log.i(TAG+ "_scrollY", scrollY+"");
                 int height = (int) Math.floor(webView.getContentHeight() * webView.getScale());
                 int webViewHeight = webView.getMeasuredHeight();
@@ -459,18 +325,18 @@ public class MainActivity extends AppCompatActivity{
 //                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
 
-                    new BottomSheet.Builder(MainActivity.this).title("设置").sheet(R.menu.menu).listener(new DialogInterface.OnClickListener() {
+                    new BottomSheet.Builder(MainActivity.this, R.style.BottomSheet_StyleDialog).title("设置").sheet(R.menu.menu).listener(new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             switch (which) {
                                 case R.id.setting:
 //                                    q.toast("Help me!");
-                                    Intent intent = new Intent(MainActivity.this, ListFruitActivity.class);
-                                    // Intent intent = new Intent(MainActivity.this, BottomSheetBasicActivity.class);
-//                                    Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                                    Intent intent = new Intent(MainActivity.this, WifiListActivity.class);
                                     startActivity(intent);
                                     break;
                                 case R.id.about:
+                                    Intent intent_about = new Intent(MainActivity.this, About.class);
+                                    startActivity(intent_about);
                                     break;
                             }
                         }

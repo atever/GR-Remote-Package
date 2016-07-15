@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,14 +19,16 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class WifiListActivity extends Activity {
+public class WifiListActivity extends AppCompatActivity {
 	private WifiManager wifiManager;
 	List<WifiConfiguration> list;
+	private int deviceVersion;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.wifi_manage);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		init();
 	}
 
@@ -89,9 +93,9 @@ public class WifiListActivity extends Activity {
 //			ScanResult scanResult = list.get(position);
 			WifiConfiguration wifiConfiguration = list.get(position);
 			TextView textView = (TextView) view.findViewById(R.id.textView);
-			textView.setText(wifiConfiguration.SSID);
-			TextView signalStrenth = (TextView) view.findViewById(R.id.signal_strenth);
-			signalStrenth.setText(String.valueOf(Math.abs(wifiConfiguration.networkId)));
+			textView.setText(whetherToRemoveTheDoubleQuotationMarks(wifiConfiguration.SSID));
+//			TextView signalStrenth = (TextView) view.findViewById(R.id.signal_strenth);
+//			signalStrenth.setText(String.valueOf(Math.abs(wifiConfiguration.networkId)));
 //			ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
 //			//
 //			if (Math.abs(scanResult.level) > 100) {
@@ -110,6 +114,20 @@ public class WifiListActivity extends Activity {
 			return view;
 		}
 
+	}
+
+
+	// 根据Android的版本判断获取到的SSID是否有双引号
+	// http://wy521angel.blog.51cto.com/3262615/1604107
+	private String whetherToRemoveTheDoubleQuotationMarks (String ssid) {
+		//获取Android版本号
+		deviceVersion = Build.VERSION.SDK_INT;
+		if (deviceVersion >= 17) {
+			if (ssid.startsWith("\"") && ssid.endsWith("\"")) {
+				ssid = ssid.substring(1, ssid.length() - 1);
+			}
+		}
+		return ssid;
 	}
 
 }

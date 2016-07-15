@@ -24,13 +24,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListFruitActivity"></activity>
-        <activity android:name=".ListViewItemActivity"></activity>
-        <activity android:name=".WifiListActivity"></activity>
-        <activity android:name=".BottomSheetBasicActivity"></activity>
+        <activity android:name=".ListFruitActivity">
+        </activity>
 
-        <activity android:name=".MainActivity2"></activity>
+        <activity android:name=".WifiListActivity"
+            android:label="@string/wifi_manage"
+            android:parentActivityName=".MainActivity">
+        </activity>
 
+        <activity android:name=".About"
+            android:label="@string/about"
+            android:parentActivityName=".MainActivity" >
+        </activity>
 
 
     </application>
