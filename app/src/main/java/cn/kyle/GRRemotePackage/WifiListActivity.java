@@ -2,6 +2,7 @@ package cn.kyle.GRRemotePackage;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -39,10 +40,30 @@ public class WifiListActivity extends AppCompatActivity {
 
 		ListView listView = (ListView) findViewById(R.id.listView);
 
+
+		final SharedPreferences sharedPref = this.getSharedPreferences("test", MODE_PRIVATE);
+
+
+
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Log.e("selected_device", " position" + list.get(position).SSID);
+
+				wifiManager.disconnect();
+				wifiManager.enableNetwork(list.get(position).networkId, true);
+				wifiManager.reconnect();
+
+				SharedPreferences.Editor editor = sharedPref.edit();
+				editor.putInt(getString(R.string.wifi_id), list.get(position).networkId);
+				editor.commit();
+
+
+//				int defaultValue = getResources().getInteger(R.string.saved_high_score_default);
+				long highScore = sharedPref.getInt(getString(R.string.wifi_id), 22);
+				Log.e("wifistore", highScore+"");
+
+
 			}
 		});
 
@@ -93,7 +114,7 @@ public class WifiListActivity extends AppCompatActivity {
 //			ScanResult scanResult = list.get(position);
 			WifiConfiguration wifiConfiguration = list.get(position);
 			TextView textView = (TextView) view.findViewById(R.id.textView);
-			textView.setText(whetherToRemoveTheDoubleQuotationMarks(wifiConfiguration.SSID));
+			textView.setText(removeTheDoubleQuotationMarks(wifiConfiguration.SSID));
 //			TextView signalStrenth = (TextView) view.findViewById(R.id.signal_strenth);
 //			signalStrenth.setText(String.valueOf(Math.abs(wifiConfiguration.networkId)));
 //			ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
@@ -119,13 +140,16 @@ public class WifiListActivity extends AppCompatActivity {
 
 	// 根据Android的版本判断获取到的SSID是否有双引号
 	// http://wy521angel.blog.51cto.com/3262615/1604107
-	private String whetherToRemoveTheDoubleQuotationMarks (String ssid) {
-		//获取Android版本号
+	private String removeTheDoubleQuotationMarks (String ssid) {
+/*		//获取Android版本号
 		deviceVersion = Build.VERSION.SDK_INT;
 		if (deviceVersion >= 17) {
 			if (ssid.startsWith("\"") && ssid.endsWith("\"")) {
 				ssid = ssid.substring(1, ssid.length() - 1);
 			}
+		}*/
+		if (ssid.startsWith("\"") && ssid.endsWith("\"")) {
+			ssid = ssid.substring(1, ssid.length() - 1);
 		}
 		return ssid;
 	}

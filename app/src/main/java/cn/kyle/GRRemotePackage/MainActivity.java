@@ -10,10 +10,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity{
 
 //        initData();
 //        initView();
-//        openWifi();
+        openWifi();
 
 
 /*        findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
@@ -77,6 +80,19 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });*/
+
+/*
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
+
+
+
+//
+//        Snackbar.make(MainActivity.this, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
+
+
+
 
 
         WEBVIEWOPT();
@@ -113,7 +129,7 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-    @Override
+/*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -133,7 +149,7 @@ public class MainActivity extends AppCompatActivity{
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
 
     @Override
@@ -178,30 +194,11 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    }
 
 
 
     public void WEBVIEWOPT () {
         webView = (WebView) findViewById(R.id.web_view);
-
-
-
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
-
 
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
@@ -231,10 +228,7 @@ public class MainActivity extends AppCompatActivity{
                     // -->标题  如果服务器端口长度改变,此处需同时改变
 //                    String[] parts = url.split("newsId=");
 //                    parts = parts[1].split("&token");
-//
-//
-//                    //覆写返回、分享按钮
-//                    setTitle("资讯");
+
                 }
             }
 
@@ -242,6 +236,7 @@ public class MainActivity extends AppCompatActivity{
             public void onPageFinished(WebView view, String url) {
 //                view.scrollTo(0, view.getContentHeight());
 //                Log.e(TAG, String.valueOf(view.getContentHeight()));
+//                webView.loadUrl("javascript:document.write('hello')");
             }
 
 
@@ -252,16 +247,10 @@ public class MainActivity extends AppCompatActivity{
 //        webView.loadUrl("http://192.168.0.163:3000/");
 //        webView.loadUrl("https://vux.li/");
 //        webView.loadUrl("http://192.168.0.163:3000/pages/wst.html");
-//        webView.loadUrl("http://192.168.0.103:8000/public/ada/index.html");
-
 //        webView.loadUrl("http://www.dgtle.com");
         webView.loadUrl("http://www.ricoh-imaging.co.jp/english/products/gr_remote/app/latest-appcache/index.html");
 //        webView.loadUrl("http://www.ricoh-imaging.co.jp/english/products/gr_remote/app/latest/index.html");
 
-
-//        String summary = "<html><body>You scored <b>192</b> points.</body></html>";
-//        webView.loadData(summary, "text/html", null);
-//        webView.loadDataWithBaseURL("http://www.ricoh-imaging.co.jp/english/products/gr_remote/app/latest-appcache/index.html",summary, "text/html", null, null);
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
@@ -302,10 +291,6 @@ public class MainActivity extends AppCompatActivity{
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY); //滚动条0
 
 
-
-
-
-
         Log.e("TEst", String.valueOf(webView.getProgress()));
 
 
@@ -315,7 +300,7 @@ public class MainActivity extends AppCompatActivity{
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
 
 
-                Log.i(TAG+ "_scrollY", scrollY+"");
+                Log.i(TAG+ "_scrollY", scrollY+"/scorollX:"+scrollX);
                 int height = (int) Math.floor(webView.getContentHeight() * webView.getScale());
                 int webViewHeight = webView.getMeasuredHeight();
                 if(scrollY + webViewHeight >= height){
@@ -344,19 +329,7 @@ public class MainActivity extends AppCompatActivity{
 
 
                 }
-/*
 
-                if (scrollY < 144 && (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN)) {
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                }
-
-*/
-
-//                else if ((bottomSheetBehavior != null) && (scrollY == 0)) {
-//                    if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN) {
-//                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-//                    }
-//                }
 
             }
 

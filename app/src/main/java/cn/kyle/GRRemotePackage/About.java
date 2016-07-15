@@ -1,6 +1,8 @@
 package cn.kyle.GRRemotePackage;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Bundle;
@@ -34,25 +36,14 @@ public class About extends AppCompatActivity {
         View aboutPage = new AboutPage(this)
                 .isRTL(false)
                 .setImage(R.mipmap.ic_launcher)
-                .setDescription("V 0.1\n本软件只是将 GR Remote 网页做了缓存\n添加了自动连接相机WIFI的功能\n本软件不保留任何权利.\n网站版权归于: RICOH IMAGING Co., Ltd.")
-//                .addItem(getAppVersion())
-//                .addItem(adsElement)
+                .setDescription("V " + getAppVersion() + "\n" +
+                        "本软件只是将 GR Remote 网页做了缓存\n添加了自动连接相机WIFI的功能\n本软件不保留任何权利.\n网站版权归于: RICOH IMAGING Co., Ltd.")
                 .addGroup("联系我")
-//                .addWebsite("https://github.com/BorntoGO/GR-Remote-Package")
-//                .addFacebook("the.medy")
-//                .addTwitter("medyo80")
-//                .addYoutube("UCdPQtdWIsg7_pi4mrRu46vA")
-//                .addPlayStore("com.ideashower.readitlater.pro")
-//                .addInstagram("medyo80")
-//                .addGitHub("BorntoGO")
-//                .addItem(addCustomWebsite("baidu.com", "我的博客"))
-//                .addItem(addSteam("http://steamcommunity.com/profiles/76561198040853930", "来啊,互相伤害啊!"))
                 .addItem(addCustomWebsite("https://github.com/BorntoGO/GR-Remote-Package", "项目地址", mehdi.sakout.aboutpage.R.drawable.about_icon_github, true))
+//                .addEmail("justregisterid@gmail.com")
+                .addItem(addCustomEmail("justregisterid@gmail.com"))
                 .addItem(addCustomWebsite("http://borntogo.github.io/", "部落格", 0, false))
                 .addItem(addCustomWebsite("http://steamcommunity.com/profiles/76561198040853930", "来啊,互相伤害啊!", R.drawable.steam, true))
-//                .addItem(getCopyRightsElement())
-
-                .addEmail("justregisterid@gmail.com")
                 .create();
 
         setContentView(aboutPage);
@@ -109,24 +100,33 @@ public class About extends AppCompatActivity {
     }
 
 
-    Element getAppVersion() {
-        Element copyRightsElement = new Element();
-//        final String copyrights = String.format( Calendar.getInstance().get(Calendar.YEAR) + "");
-        final String copyrights = "Version 6.2";
+    Element addCustomEmail(String email) {
 
-        copyRightsElement.setTitle(copyrights);
-//        copyRightsElement.setIcon(R.drawable.steam);
+        Element emailElement = new Element();
+        emailElement.setTitle("邮件反馈");
+        emailElement.setIcon(mehdi.sakout.aboutpage.R.drawable.about_icon_email);
+        emailElement.setColor(ContextCompat.getColor(this, mehdi.sakout.aboutpage.R.color.about_item_icon_color));
 
-//        copyRightsElement.setIcon(R.drawable.about_icon_copy_right);
-//        copyRightsElement.setColor(ContextCompat.getColor(this, mehdi.sakout.aboutpage.R.color.about_item_icon_color));
-        copyRightsElement.setGravity(Gravity.CENTER);
-        copyRightsElement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(About.this, copyrights, Toast.LENGTH_SHORT).show();
-            }
-        });
-        return copyRightsElement;
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("message/rfc822");
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+        emailElement.setIntent(intent);
+        return emailElement;
+
     }
+
+
+    public String getAppVersion() {
+        String version = "0.01";
+        try {
+            PackageManager manager = getPackageManager();
+            PackageInfo info = manager.getPackageInfo(getPackageName(), 0);
+            version = info.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return version;
+    }
+
 
 }
