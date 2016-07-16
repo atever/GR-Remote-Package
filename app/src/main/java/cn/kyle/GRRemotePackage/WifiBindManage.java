@@ -1,11 +1,9 @@
 package cn.kyle.GRRemotePackage;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,7 +18,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class WifiListActivity extends AppCompatActivity {
+public class WifiBindManage extends AppCompatActivity {
 	private WifiManager wifiManager;
 	List<WifiConfiguration> list;
 	private int deviceVersion;
@@ -28,7 +26,7 @@ public class WifiListActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.wifi_manage);
+		setContentView(R.layout.wifi_bind_manage);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		init();
 	}
@@ -110,7 +108,7 @@ public class WifiListActivity extends AppCompatActivity {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
 			View view = null;
-			view = inflater.inflate(R.layout.item_wifi_list, null);
+			view = inflater.inflate(R.layout.wifi_list_item, null);
 //			ScanResult scanResult = list.get(position);
 			WifiConfiguration wifiConfiguration = list.get(position);
 			TextView textView = (TextView) view.findViewById(R.id.textView);

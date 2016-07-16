@@ -11,4 +11,9 @@
     <string name="wifi_manage">WIFI热点绑定</string>
     <string name="wifi_id">wifiId</string>
 
+
+    <string name="wifi_bind">已绑定的WIFI</string>
+    <string name="wifi_select">选取网络</string>
+
+
 </resources>

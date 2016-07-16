@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,13 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
-        <receiver android:name=".wifiBroadcastReceiver" >
-            <intent-filter>
-                <action android:name="android.net.wifi.supplicant.CONNECTION_CHANGE" />
-                <action android:name="android.net.wifi.STATE_CHANGE" />
-            </intent-filter>
-        </receiver>
 
         <activity
             android:name="cn.kyle.GRRemotePackage.MainActivity"
@@ -33,10 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListFruitActivity">
-        </activity>
 
-        <activity android:name=".WifiListActivity"
+        <activity android:name=".WifiBindManage"
             android:label="@string/wifi_manage"
             android:parentActivityName=".MainActivity">
         </activity>

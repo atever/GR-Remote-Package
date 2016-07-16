@@ -37,7 +37,7 @@ public class About extends AppCompatActivity {
                 .isRTL(false)
                 .setImage(R.mipmap.ic_launcher)
                 .setDescription("V " + getAppVersion() + "\n" +
-                        "本软件只是将 GR Remote 网页做了缓存\n添加了自动连接相机WIFI的功能\n本软件不保留任何权利.\n网站版权归于: RICOH IMAGING Co., Ltd.")
+                        "本软件只是对 GR Remote 网页做了缓存\n添加了自动连接相机WIFI的功能\n本软件不保留任何权利.\n网站版权归于: RICOH IMAGING Co., Ltd.")
                 .addGroup("联系我")
                 .addItem(addCustomWebsite("https://github.com/BorntoGO/GR-Remote-Package", "项目地址", mehdi.sakout.aboutpage.R.drawable.about_icon_github, true))
 //                .addEmail("justregisterid@gmail.com")
