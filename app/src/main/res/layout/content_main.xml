@@ -11,14 +11,52 @@
 
     <WebView
         android:id="@+id/web_view"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </WebView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:id="@+id/linearLayout">
 
-    <!--<Button-->
-        <!--android:id="@+id/btn"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
+<!--        <com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/circle_loading_view"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:background="@color/background"
+            android:layout_centerInParent="true"
+            app:mainColor="@color/main_color"
+            app:secondaryColor="@color/secondary_color"
+            app:textColor="@android:color/white"
+            />-->
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        >
+
+        <com.ldoublem.loadingviewlib.LVEatBeans
+            android:id="@+id/lv_eatBeans"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            />
+
+    </LinearLayout>
 
 
 </RelativeLayout>

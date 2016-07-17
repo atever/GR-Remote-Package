@@ -151,16 +151,9 @@ public class WifiBindManage extends AppCompatActivity {
 	}
 
 
-	// 根据Android的版本判断获取到的SSID是否有双引号
+	// 去除双引号
 	// http://wy521angel.blog.51cto.com/3262615/1604107
 	private String removeTheDoubleQuotationMarks (String ssid) {
-/*		//获取Android版本号
-		deviceVersion = Build.VERSION.SDK_INT;
-		if (deviceVersion >= 17) {
-			if (ssid.startsWith("\"") && ssid.endsWith("\"")) {
-				ssid = ssid.substring(1, ssid.length() - 1);
-			}
-		}*/
 		if (ssid.startsWith("\"") && ssid.endsWith("\"")) {
 			ssid = ssid.substring(1, ssid.length() - 1);
 		}

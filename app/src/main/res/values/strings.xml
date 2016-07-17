@@ -16,4 +16,8 @@
     <string name="wifi_select">选取网络</string>
 
 
+    <string name="loading_text">ing</string>
+
+
+
 </resources>

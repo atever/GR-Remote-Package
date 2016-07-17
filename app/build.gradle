@@ -27,4 +27,5 @@ dependencies {
     compile 'com.android.support:design:23.2.1'
     compile 'com.cocosw:bottomsheet:1.+@aar'
     compile 'com.github.medyo:android-about-page:1.0.9'
+    compile 'com.ldoublem.loadingview:loadingviewlib:0.0.1'
 }

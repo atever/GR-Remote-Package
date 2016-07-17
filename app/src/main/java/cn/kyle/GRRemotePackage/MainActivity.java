@@ -19,9 +19,13 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.cocosw.bottomsheet.BottomSheet;
+import com.ldoublem.loadingviewlib.LVEatBeans;
+import com.ldoublem.loadingviewlib.LVLineWithText;
+
 
 public class MainActivity extends AppCompatActivity{
 
@@ -30,6 +34,14 @@ public class MainActivity extends AppCompatActivity{
     private boolean mIsExit = false;
     final String TAG = "MainActivity";
     BroadcastReceiver receiver;
+
+    LVEatBeans pacMan;
+
+
+/*
+    private AnimatedCircleLoadingView animatedCircleLoadingView;
+*/
+
 
 
     @Override
@@ -47,11 +59,10 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-
 //        openWifi();
         registerWifiStateReceiver();
 
-
+        StartAnimal();
 
 
 
@@ -74,16 +85,13 @@ public class MainActivity extends AppCompatActivity{
 //        Snackbar.make(MainActivity.this, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show();
 
-
-
-
-
         WEBVIEWOPT();
-
 
     }
 
-
+/*    private void startLoading() {
+        animatedCircleLoadingView.startDeterminate();
+    }*/
 
 
 
@@ -232,6 +240,15 @@ public class MainActivity extends AppCompatActivity{
                 super.onProgressChanged(view, newProgress);
                 Log.d("progressChange", String.valueOf(newProgress));
 
+                // 网页载入进度达到100时显示
+                if (newProgress == 100) {
+                    pacMan.stopAnim();
+                    pacMan.setVisibility(View.GONE);
+                    webView.setVisibility(View.VISIBLE);
+
+                }
+
+
             }
 
 
@@ -266,7 +283,6 @@ public class MainActivity extends AppCompatActivity{
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY); //滚动条0
 
 
-        Log.e("TEst", String.valueOf(webView.getProgress()));
 
 
 
@@ -311,6 +327,16 @@ public class MainActivity extends AppCompatActivity{
 
         });
     }
+
+
+    // 开始动画
+
+    public void StartAnimal () {
+        pacMan = (LVEatBeans) findViewById(R.id.lv_eatBeans);
+        pacMan.startAnim();
+    }
+
+
 
 
     /**
