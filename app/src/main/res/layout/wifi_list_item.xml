@@ -23,7 +23,7 @@
         android:paddingLeft="24dp"
         android:paddingBottom="@dimen/bs_grid_bottom_padding"
         android:paddingTop="@dimen/bs_grid_bottom_padding"
-        android:text="TextView" />
+        android:text="Hello World!" />
 
     <!--<TextView-->
         <!--android:id="@+id/signal_strenth"-->

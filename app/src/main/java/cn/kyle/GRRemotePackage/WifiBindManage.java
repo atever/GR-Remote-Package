@@ -60,13 +60,7 @@ public class WifiBindManage extends AppCompatActivity {
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Log.e("selected_device", list.get(position).networkId + "position" + list.get(position).SSID);
-
-
-
-
-
-
+//				Log.i("selected_device", list.get(position).networkId + "position" + list.get(position).SSID);
 
 				SharedPreferences sharedPref = getSharedPreferences("test", MODE_PRIVATE);
 				int wifiId = sharedPref.getInt(getString(R.string.wifi_id), -1);
@@ -81,12 +75,7 @@ public class WifiBindManage extends AppCompatActivity {
 
 				}
 
-
-
-				Snackbar.make(container, "SnackbarTest", Snackbar.LENGTH_LONG).show();
 				Toast.makeText(WifiBindManage.this, "已绑定"+ removeTheDoubleQuotationMarks(list.get(position).SSID), Toast.LENGTH_LONG).show();
-
-
 				finish();
 			}
 		});

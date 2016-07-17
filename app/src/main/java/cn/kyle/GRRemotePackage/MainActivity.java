@@ -36,13 +36,7 @@ public class MainActivity extends AppCompatActivity{
     private boolean mIsExit = false;
     final String TAG = "MainActivity";
     BroadcastReceiver receiver;
-
     LVEatBeans pacMan;
-
-    CoordinatorLayout container;
-/*
-    private AnimatedCircleLoadingView animatedCircleLoadingView;
-*/
 
 
 
@@ -66,55 +60,9 @@ public class MainActivity extends AppCompatActivity{
 
         StartAnimal();
 
-
-        container = (CoordinatorLayout) findViewById(R.id.container);
-
-
-        Snackbar.make(container, "SnackbarTest", Snackbar.LENGTH_LONG).show();
-
-
-
-
-
-/*        findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
-
-
-
-/*
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
-
-
-
-//
-//        Snackbar.make(MainActivity.this, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show();
-
         WEBVIEWOPT();
 
     }
-
-/*    private void startLoading() {
-        animatedCircleLoadingView.startDeterminate();
-    }*/
-
-
-
-//    @Override
-//    public void onClick(View v)
-//    {
-//        switch(v.getId())
-//        {
-//            case R.id.showBottomSheet:
-//                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-//                break;
-//        }
-//    }
 
 
 
@@ -146,27 +94,13 @@ public class MainActivity extends AppCompatActivity{
 
 
     @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
-//            webView.goBack();// 返回前一个页面
-//            return true;
-//        }
-//        return super.onKeyDown(keyCode, event);
-//    }
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         Log.e("Event", String.valueOf(event));
-
 
         if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
             webView.goBack();
             return true;
-        }
-//        else if (keyCode == KeyEvent.KEYCODE_BACK && drawer.isDrawerOpen(GravityCompat.START)) {
-////                drawer.closeDrawer(GravityCompat.START);
-//            ada.makeText("gaga");}
-
-
-        else if (keyCode == KeyEvent.KEYCODE_BACK) {
+        } else if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (!mIsExit) {
                 mIsExit = true;
                 new Handler().postAtTime(new Runnable() {
@@ -178,11 +112,8 @@ public class MainActivity extends AppCompatActivity{
                 Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
                 return false;
             }
-
             finish();
-
         }
-
         return super.onKeyDown(keyCode, event);
     }
 
@@ -228,7 +159,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onPageFinished(WebView view, String url) {
 //                view.scrollTo(0, view.getContentHeight());
-//                Log.e(TAG, String.valueOf(view.getContentHeight()));
+                Log.e(TAG, "page finished");
 //                webView.loadUrl("javascript:document.write('hello')");
             }
 
