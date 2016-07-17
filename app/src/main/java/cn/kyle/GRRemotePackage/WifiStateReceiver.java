@@ -20,20 +20,22 @@ public class WifiStateReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (WifiManager.WIFI_STATE_CHANGED_ACTION.equals(intent.getAction())) {// 这个监听wifi的打开与关闭，与wifi的连接无关
-//            int wifiState = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE, 0);
-//            Log.e("H3c", "wifiState" + wifiState);
+
 
             WifiManager wifiManager=(WifiManager)context.getSystemService(Context.WIFI_SERVICE);
             if (wifiManager.isWifiEnabled()){
-                Log.e("wifistate", "已打开wifi");
+                Log.e("wifistate", "尝试连接相机");
 
                 final SharedPreferences sharedPref = context.getSharedPreferences("test", context.MODE_PRIVATE);
-                int wifiId = sharedPref.getInt(context.getString(R.string.wifi_id), 22);
+                int wifiId = sharedPref.getInt(context.getString(R.string.wifi_id), -1);
                 Log.e("wifistore", wifiId + "");
 
 //                wifiManager.disconnect();
-                wifiManager.enableNetwork(wifiId, true);
-                wifiManager.reconnect();
+
+                if (wifiId != -1) {
+                    wifiManager.enableNetwork(wifiId, true);
+                    wifiManager.reconnect();
+                }
 
             } else  {
 //                Toast.makeText(MainActivity.this, "请打开wifi", Toast.LENGTH_SHORT).show();

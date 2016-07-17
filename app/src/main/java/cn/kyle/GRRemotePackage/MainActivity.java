@@ -1,9 +1,11 @@
 package cn.kyle.GRRemotePackage;
 
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-//        openWifi();
+        wifiManage();
         registerWifiStateReceiver();
 
         StartAnimal();
@@ -117,18 +119,55 @@ public class MainActivity extends AppCompatActivity{
         return super.onKeyDown(keyCode, event);
     }
 
+    private void wifiManage () {
+        WifiManager wm=(WifiManager)this.getSystemService(Context.WIFI_SERVICE);
+        Log.e("wifistate", String.valueOf(wm.getWifiState()));
+
+        if (wm.isWifiEnabled()) {
+
+            // 连接
+
+            final SharedPreferences sharedPref = getSharedPreferences("test", MODE_PRIVATE);
+            int wifiId = sharedPref.getInt(getString(R.string.wifi_id), -1);
+            Log.e("wifistore", wifiId + "");
+
+//                wifiManager.disconnect();
+
+            if (wifiId != -1) {
+                wm.enableNetwork(wifiId, true);
+                wm.reconnect();
+            }
+        } else {
+//            enable
+
+            Toast.makeText(MainActivity.this, "正打开wifi", Toast.LENGTH_SHORT).show();
+            wm.setWifiEnabled(true);
+        }
+    }
 
 
 
 
     public void WEBVIEWOPT () {
         webView = (WebView) findViewById(R.id.web_view);
+        WebSettings settings = webView.getSettings();
 
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        webView.getSettings().setSupportZoom(true);
-        webView.getSettings().setBuiltInZoomControls(true);
+
+
+        settings.setJavaScriptEnabled(true);
+        settings.setDomStorageEnabled(true);
+//        webseting.setCacheMode(WebSettings.LOAD_DEFAULT);
+        settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+
+        settings.setDatabaseEnabled(true);
+        String appCaceDir =this.getApplicationContext().getDir("cache", Context.MODE_PRIVATE).getPath();
+        Log.e("Cachepath",appCaceDir);
+        settings.setAppCachePath(appCaceDir);
+        settings.setAppCacheEnabled(true);
+        settings.setSupportZoom(false);
+        settings.setBuiltInZoomControls(false);
+
+
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
@@ -171,6 +210,7 @@ public class MainActivity extends AppCompatActivity{
 //        webView.loadUrl("http://192.168.0.163:3000/");
 //        webView.loadUrl("https://vux.li/");
 //        webView.loadUrl("http://192.168.0.163:3000/pages/wst.html");
+//        webView.loadUrl("http://www.baidu.com");
 //        webView.loadUrl("http://www.dgtle.com");
         webView.loadUrl("http://www.ricoh-imaging.co.jp/english/products/gr_remote/app/latest-appcache/index.html");
 //        webView.loadUrl("http://www.ricoh-imaging.co.jp/english/products/gr_remote/app/latest/index.html");
@@ -232,7 +272,7 @@ public class MainActivity extends AppCompatActivity{
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
 
 
-                Log.i(TAG+ "_scrollY", scrollY+"/scorollX:"+scrollX);
+//                Log.i(TAG+ "_scrollY", String.valueOf(scrollY));
                 int height = (int) Math.floor(webView.getContentHeight() * webView.getScale());
                 int webViewHeight = webView.getMeasuredHeight();
                 if(scrollY + webViewHeight >= height){

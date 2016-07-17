@@ -65,7 +65,7 @@ public class WifiBindManage extends AppCompatActivity {
 				SharedPreferences sharedPref = getSharedPreferences("test", MODE_PRIVATE);
 				int wifiId = sharedPref.getInt(getString(R.string.wifi_id), -1);
 
-				if (list.get(position).networkId != wifiId && wifiId > -1) {
+				if (list.get(position).networkId != wifiId && wifiId != -1) {
 					wifiManager.enableNetwork(list.get(position).networkId, true);
 					wifiManager.reconnect();
 
