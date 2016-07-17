@@ -9,6 +9,8 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity{
 
     LVEatBeans pacMan;
 
-
+    CoordinatorLayout container;
 /*
     private AnimatedCircleLoadingView animatedCircleLoadingView;
 */
@@ -63,6 +65,14 @@ public class MainActivity extends AppCompatActivity{
         registerWifiStateReceiver();
 
         StartAnimal();
+
+
+        container = (CoordinatorLayout) findViewById(R.id.container);
+
+
+        Snackbar.make(container, "SnackbarTest", Snackbar.LENGTH_LONG).show();
+
+
 
 
 

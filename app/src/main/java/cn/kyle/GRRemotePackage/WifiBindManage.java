@@ -6,6 +6,8 @@ import android.media.Image;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +28,8 @@ public class WifiBindManage extends AppCompatActivity {
 	List<WifiConfiguration> list;
 	static ListAdapter mListAdapter;
 	private int deviceVersion;
+
+	CoordinatorLayout container;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,7 @@ public class WifiBindManage extends AppCompatActivity {
 
 		final SharedPreferences sharedPref = this.getSharedPreferences("test", MODE_PRIVATE);
 
+		container = (CoordinatorLayout) findViewById(R.id.container1);
 
 
 
@@ -75,6 +80,13 @@ public class WifiBindManage extends AppCompatActivity {
 					editor.commit();
 
 				}
+
+
+
+				Snackbar.make(container, "SnackbarTest", Snackbar.LENGTH_LONG).show();
+				Toast.makeText(WifiBindManage.this, "已绑定"+ removeTheDoubleQuotationMarks(list.get(position).SSID), Toast.LENGTH_LONG).show();
+
+
 				finish();
 			}
 		});

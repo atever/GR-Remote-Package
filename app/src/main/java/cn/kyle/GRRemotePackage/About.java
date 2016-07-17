@@ -28,11 +28,6 @@ public class About extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
-//        Element adsElement = new Element();
-//        adsElement.setTitle("Advertise with us");
-
         View aboutPage = new AboutPage(this)
                 .isRTL(false)
                 .setImage(R.mipmap.ic_launcher)
@@ -49,31 +44,6 @@ public class About extends AppCompatActivity {
         setContentView(aboutPage);
     }
 
-    Element getCopyRightsElement() {
-        Element copyRightsElement = new Element();
-//        final String copyrights = String.format( Calendar.getInstance().get(Calendar.YEAR) + "");
-        final String copyrights = "本软件不保留任何权利.\n网站版权归于: RICOH IMAGING Co., Ltd.";
-
-        copyRightsElement.setTitle(copyrights);
-//        copyRightsElement.setIcon(R.drawable.steam);
-
-//        copyRightsElement.setIcon(R.drawable.about_icon_copy_right);
-        copyRightsElement.setColor(ContextCompat.getColor(this, mehdi.sakout.aboutpage.R.color.about_item_icon_color));
-        copyRightsElement.setGravity(Gravity.CENTER);
-        copyRightsElement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(About.this, copyrights, Toast.LENGTH_SHORT).show();
-            }
-        });
-        return copyRightsElement;
-    }
-
-
-
-
-
-
     Element addCustomWebsite(String url, String title, int cusicon, Boolean showcusicon) {
         if (!url.startsWith("http://") && !url.startsWith("https://")) {
             url = "http://" + url;
@@ -83,36 +53,28 @@ public class About extends AppCompatActivity {
         if (showcusicon){
             icon = cusicon;
         }
-
         Element websiteElement = new Element();
         websiteElement.setTitle(title);
-//        websiteElement.setIcon(mehdi.sakout.aboutpage.R.drawable.about_icon_link);
         websiteElement.setIcon(icon);
         websiteElement.setColor(ContextCompat.getColor(this, mehdi.sakout.aboutpage.R.color.about_item_icon_color));
         websiteElement.setValue(url);
-
         Uri uri = Uri.parse(url);
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, uri);
-
         websiteElement.setIntent(browserIntent);
-
         return websiteElement;
     }
 
 
     Element addCustomEmail(String email) {
-
         Element emailElement = new Element();
         emailElement.setTitle("邮件反馈");
         emailElement.setIcon(mehdi.sakout.aboutpage.R.drawable.about_icon_email);
         emailElement.setColor(ContextCompat.getColor(this, mehdi.sakout.aboutpage.R.color.about_item_icon_color));
-
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("message/rfc822");
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
         emailElement.setIntent(intent);
         return emailElement;
-
     }
 
 
