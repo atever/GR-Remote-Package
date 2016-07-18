@@ -27,8 +27,8 @@ public class WifiStateReceiver extends BroadcastReceiver {
         int wifiId = sharedPref.getInt(context.getString(R.string.wifi_id), -1);
         String bindSSID = sharedPref.getString(context.getString(R.string.bindSSID),
                 context.getString(R.string.defSSID));
-
         Log.e(TAG, "sharedPred_" + wifiId + bindSSID);
+
         WifiManager wifiManager=(WifiManager)context.getSystemService(Context.WIFI_SERVICE);
 
 
@@ -62,24 +62,25 @@ public class WifiStateReceiver extends BroadcastReceiver {
         if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
             ConnectivityManager manager = (ConnectivityManager) context
                     .getSystemService(Context.CONNECTIVITY_SERVICE);
+            Log.i(TAG, "type" + String.valueOf(manager.getActiveNetworkInfo()));
+
 
             NetworkInfo info = manager.getActiveNetworkInfo();
 
             if (info != null) {
-//                Log.e(TAG, "type---------------!null");
-                String SSID = info.getExtraInfo();
                 int Type = info.getType();
 
-                if ( (Type != ConnectivityManager.TYPE_WIFI) ||
-                    (!SSID.equals(bindSSID) && !SSID.equals(context.getString(R.string.defSSID))) ) {
+                if (Type == ConnectivityManager.TYPE_WIFI) {
 
-                    wifiManager.enableNetwork(wifiId, true);
-                    wifiManager.reconnect();
+                    String SSID = info.getExtraInfo();
+                    if ( !SSID.equals(bindSSID) && wifiId != -1) {
+                        wifiManager.enableNetwork(wifiId, true);
+                        wifiManager.reconnect();
+                    }
                 }
 
             }
 
-//            Log.i(TAG, "type" + String.valueOf(manager.getActiveNetworkInfo()));
 
         }
 
