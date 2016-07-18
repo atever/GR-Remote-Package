@@ -56,7 +56,7 @@ public class WifiBindManage extends AppCompatActivity {
 		container = (CoordinatorLayout) findViewById(R.id.container1);
 
 
-
+		assert listView != null;
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -65,12 +65,16 @@ public class WifiBindManage extends AppCompatActivity {
 				SharedPreferences sharedPref = getSharedPreferences("test", MODE_PRIVATE);
 				int wifiId = sharedPref.getInt(getString(R.string.wifi_id), -1);
 
-				if (list.get(position).networkId != wifiId && wifiId != -1) {
+
+//				Log.e("wifiinfo", l)
+
+				if ((list.get(position).networkId != wifiId) && (list.get(position).networkId != -1)) {
 					wifiManager.enableNetwork(list.get(position).networkId, true);
 					wifiManager.reconnect();
 
 					SharedPreferences.Editor editor = sharedPref.edit();
 					editor.putInt(getString(R.string.wifi_id), list.get(position).networkId);
+					editor.putString(getString(R.string.bindSSID), list.get(position).SSID);
 					editor.commit();
 
 				}
@@ -139,7 +143,7 @@ public class WifiBindManage extends AppCompatActivity {
 
 			SharedPreferences sharedPref = getSharedPreferences("test", MODE_PRIVATE);
 			int wifiId = sharedPref.getInt(getString(R.string.wifi_id), 2);
-			Log.e("wifistore", wifiId + "");
+			Log.i("wifistore", wifiId + "");
 
 //			ImageView image = (ImageView) view.findViewById(R.id.imageView);
 

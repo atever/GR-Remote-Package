@@ -10,6 +10,11 @@
     // menu
     <string name="wifi_manage">WIFI热点绑定</string>
     <string name="wifi_id">wifiId</string>
+    <string name="bindSSID">bindSSID</string>
+    <string name="defSSID">nop</string>
+
+
+
 
 
     <string name="wifi_bind">已绑定的WIFI</string>
@@ -19,5 +24,8 @@
     <string name="loading_text">ing</string>
 
 
+
+
+    <string name="nop">nop</string>
 
 </resources>
