@@ -27,7 +27,6 @@ public class WifiBindManage extends AppCompatActivity {
 	private WifiManager wifiManager;
 	List<WifiConfiguration> list;
 	static ListAdapter mListAdapter;
-	private int deviceVersion;
 
 	CoordinatorLayout container;
 
@@ -133,19 +132,14 @@ public class WifiBindManage extends AppCompatActivity {
 
 			View view = null;
 			view = inflater.inflate(R.layout.wifi_list_item, null);
-//			ScanResult scanResult = list.get(position);
 			WifiConfiguration wifiConfiguration = list.get(position);
 			TextView textView = (TextView) view.findViewById(R.id.textView);
 			textView.setText(removeTheDoubleQuotationMarks(wifiConfiguration.SSID));
-//			TextView signalStrenth = (TextView) view.findViewById(R.id.signal_strenth);
-//			signalStrenth.setText(String.valueOf(Math.abs(wifiConfiguration.networkId)));
 			ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
 
 			SharedPreferences sharedPref = getSharedPreferences("test", MODE_PRIVATE);
-			int wifiId = sharedPref.getInt(getString(R.string.wifi_id), 2);
+			int wifiId = sharedPref.getInt(getString(R.string.wifi_id), -1);
 			Log.i("wifistore", wifiId + "");
-
-//			ImageView image = (ImageView) view.findViewById(R.id.imageView);
 
 			if (wifiConfiguration.networkId == wifiId) {
 				imageView.setVisibility(View.VISIBLE);

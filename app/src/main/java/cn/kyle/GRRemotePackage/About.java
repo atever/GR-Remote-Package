@@ -37,7 +37,7 @@ public class About extends AppCompatActivity {
                 .addItem(addCustomWebsite("https://github.com/BorntoGO/GR-Remote-Package", "项目地址", mehdi.sakout.aboutpage.R.drawable.about_icon_github, true))
 //                .addEmail("justregisterid@gmail.com")
                 .addItem(addCustomEmail("justregisterid@gmail.com"))
-                .addItem(addCustomWebsite("http://borntogo.github.io/", "部落格", 0, false))
+//                .addItem(addCustomWebsite("http://borntogo.github.io/", "部落格", 0, false))
                 .addItem(addCustomWebsite("http://steamcommunity.com/profiles/76561198040853930", "来啊,互相伤害啊!", R.drawable.steam, true))
                 .create();
 

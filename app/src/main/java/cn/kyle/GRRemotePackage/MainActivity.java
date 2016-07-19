@@ -6,30 +6,23 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
-//import android.view.View;
 import android.view.View;
-import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.cocosw.bottomsheet.BottomSheet;
 import com.ldoublem.loadingviewlib.LVEatBeans;
-import com.ldoublem.loadingviewlib.LVLineWithText;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -50,20 +43,15 @@ public class MainActivity extends AppCompatActivity{
 //        getActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
 //        initData();
 //        initView();
-
-
-
-
 
         wifiManage();
         registerWifiStateReceiver();
 
         StartAnimal();
 
-        WEBVIEWOPT();
+        WEBVIEW();
 
     }
 
@@ -78,12 +66,9 @@ public class MainActivity extends AppCompatActivity{
         if (wm.isWifiEnabled()) {
 
             // 连接
-
             final SharedPreferences sharedPref = getSharedPreferences("test", MODE_PRIVATE);
             int wifiId = sharedPref.getInt(getString(R.string.wifi_id), -1);
-            Log.e("wifistore", wifiId + "");
-
-//                wifiManager.disconnect();
+//            Log.e("wifistore", wifiId + "");
 
             if (wifiId != -1) {
                 wm.enableNetwork(wifiId, true);
@@ -91,7 +76,6 @@ public class MainActivity extends AppCompatActivity{
             }
         } else {
 //            enable
-
             Toast.makeText(MainActivity.this, "正打开wifi", Toast.LENGTH_SHORT).show();
             wm.setWifiEnabled(true);
         }
@@ -100,10 +84,9 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-    public void WEBVIEWOPT () {
+    public void WEBVIEW () {
         webView = (WebView) findViewById(R.id.web_view);
         WebSettings settings = webView.getSettings();
-
 
 
         settings.setJavaScriptEnabled(true);
@@ -130,16 +113,11 @@ public class MainActivity extends AppCompatActivity{
             }
 
 
-
-
-
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return false;
             }
-
-
 
 
             @Override
@@ -196,7 +174,7 @@ public class MainActivity extends AppCompatActivity{
                     // 等待2秒，两秒后判断当前值/  或者上面的if语句 ，成立时再弹出
 //                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
-                    ShowBootsheet();
+                    ShowBottomsheet();
 
                 }
 
@@ -210,7 +188,7 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-    public void ShowBootsheet () {
+    public void ShowBottomsheet () {
         new BottomSheet.Builder(MainActivity.this, R.style.BottomSheet_StyleDialog).title("设置")
                 .sheet(R.menu.menu).listener(new DialogInterface.OnClickListener() {
 
