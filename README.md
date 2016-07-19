@@ -1,11 +1,10 @@
 # GR-Remote-Package
 
 
-
-![](http://i.imgur.com/zVhqFvj.png)
-![](http://i.imgur.com/fq8imRJ.png)
-![](http://i.imgur.com/MbqxVNz.png)
-![](http://i.imgur.com/1gn8q8f.png)
+##### 展示
+![](http://i.imgur.com/zVhqFvjm.png)
+![](http://i.imgur.com/MbqxVNzm.png)
+![](http://i.imgur.com/1gn8q8fm.png)
 
 
 ![Imgur](http://i.imgur.com/MMhMzv2.gif)
@@ -27,5 +26,9 @@
 
    1. 要求系统版本6.0及以上；
    2. 这里的绑定，只能绑定连接成功过的wifi网络，因为考虑到人与人之间的信任，就不提供输入密码这种方式啦；
+   
+   
+##### 下载地址
+[https://github.com/BorntoGO/GR-Remote-Package/blob/master/app/GR_Remote_0.1.apk](https://github.com/BorntoGO/GR-Remote-Package/blob/master/app/GR_Remote_0.1.apk)
 
 
