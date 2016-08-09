@@ -11,7 +11,7 @@
 
 
 [youtube](https://youtu.be/JaI_4JfLw9g)
-
+<iframe width="420" height="315" src="https://www.youtube.com/embed/JaI_4JfLw9g" frameborder="0" allowfullscreen></iframe>
 
 ##### 简介：
 简单说就是把这个 GR Remote 网页做了缓存，然后提供wifi绑定、重连功能。
